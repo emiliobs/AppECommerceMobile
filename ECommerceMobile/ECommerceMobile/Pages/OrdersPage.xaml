@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ECommerceMobile.Pages.OrdersPage"
              Title="Ordenes."
-             BackgroundColor="{StaticResource BackgroundColor}">
+             BackgroundColor="{StaticResource BackgroundColor}"
+              BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
 
     <Label Text="Orders Page" TextColor="{StaticResource FontColor}" VerticalOptions="Center" HorizontalOptions="Center" />
