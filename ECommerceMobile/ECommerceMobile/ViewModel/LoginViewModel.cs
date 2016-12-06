@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -9,12 +12,27 @@ using GalaSoft.MvvmLight.Command;
 
 namespace ECommerceMobile.Pages.ViewModel
 {
-    public class LoginViewModel
+    public class LoginViewModel : INotifyPropertyChanged
     {
         #region Attributes
         private NavigationService navigationService;
 
         private DialogService dialogService;
+
+        private ApiService apiService;
+
+        private bool isRunning;
+
+        #endregion
+
+        #region Events
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        }
         #endregion
 
         #region Properties
@@ -24,6 +42,21 @@ namespace ECommerceMobile.Pages.ViewModel
 
         public bool IsRemembered { get; set; }
 
+        public bool IsRunning
+        {
+            get { return isRunning; }
+
+            set
+            {
+                if (isRunning != value)
+                {
+                    isRunning = value;
+
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsRunning"));
+                }
+
+            }
+        }
 
 
         #endregion
@@ -33,6 +66,7 @@ namespace ECommerceMobile.Pages.ViewModel
         {
             navigationService = new NavigationService();
             dialogService = new DialogService();
+            apiService = new ApiService();
 
             IsRemembered = true;
         }
@@ -44,6 +78,8 @@ namespace ECommerceMobile.Pages.ViewModel
         {
             get { return new RelayCommand(Login); }
         }
+
+
 
         private async void Login()
         {
@@ -61,10 +97,23 @@ namespace ECommerceMobile.Pages.ViewModel
                 return;
             }
 
+            IsRunning = true;
+
+            var response = await apiService.Login(User, Password);
+
+            IsRunning = false;
+
+            if (!response.IsSuccess)
+            {
+                await dialogService.ShowMessage("Error", response.Message);
+                return;
+            }
+
             navigationService.SetMainPage();
         }
 
         #endregion
+
 
     }
 }
