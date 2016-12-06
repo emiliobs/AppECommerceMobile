@@ -44,5 +44,10 @@ namespace ECommerceMobile.Services
                     break;
             }
          }
-     }
+
+         public void SetMainPage()
+         {
+             App.Current.MainPage = new MasterPage();
+         }
+    }
 }

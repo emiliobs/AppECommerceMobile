@@ -29,12 +29,13 @@
         </BoxView>
 
         <Entry Placeholder="Usuario"
+
                Keyboard="Email"
              TextColor="{StaticResource FontColor}"
                Text="{Binding User, Mode=TwoWay}">
         </Entry>
         <Entry IsPassword="True" Placeholder="Contraseña"
-            TextColor="{StaticResource FontColor}"
+               TextColor="{StaticResource FontColor}"
                Text="{Binding Password, Mode=TwoWay} ">
         </Entry>
 
@@ -42,7 +43,8 @@
                 TextColor="{StaticResource AccentColor1}"
              Text="Ingresar."
              HorizontalOptions="Center"
-             VerticalOptions="Center">
+             VerticalOptions="Center"
+            Command="{Binding LoginCommand}">
 
         </Button>
         <StackLayout Orientation="Horizontal"  HorizontalOptions="Center">
@@ -55,13 +57,13 @@
             </Label>
             <Switch HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    IsToggled="True">
+                    IsToggled="{Binding IsRemembered}">
 
             </Switch>
 
         </StackLayout>
 
-        <ActivityIndicator IsRunning="True"></ActivityIndicator>
+        <ActivityIndicator IsRunning="False"></ActivityIndicator>
         <Label Text="¿Has olvidado tu Contraseña?"
                   FontSize="20"
                FontAttributes="Bold"
