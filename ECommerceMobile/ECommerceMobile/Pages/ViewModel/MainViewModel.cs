@@ -11,6 +11,9 @@ namespace ECommerceMobile.Pages.ViewModel
     {
         #region Properties
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
+
+        public LoginViewModel NewLogin { get; set; }
+
         #endregion
 
         #region Constructor
@@ -18,6 +21,8 @@ namespace ECommerceMobile.Pages.ViewModel
         public MainViewModel()
         {
             Menu = new ObservableCollection<MenuItemViewModel>();
+
+            NewLogin = new LoginViewModel();
 
             //Carga las Paginas:
 
