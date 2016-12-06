@@ -20,6 +20,7 @@ namespace ECommerceMobile.Pages
         {
             base.OnAppearing();
             App.Navigator = navigator;
+            App.Master = this;
         }
     }
 }

@@ -4,12 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ECommerceMobile.Services;
 using GalaSoft.MvvmLight.Command;
 
 namespace ECommerceMobile.Pages.ViewModel
 {
     public class MenuItemViewModel
     {
+        #region Attributes
+
+        private NavigationService navigationService;
+        #endregion
+
+
         #region Properties
         public string Icon { get; set; }
 
@@ -18,6 +25,13 @@ namespace ECommerceMobile.Pages.ViewModel
         public string PageName { get; set; }
 
 
+        #endregion
+
+        #region Cosntructor
+        public MenuItemViewModel()
+        {
+            navigationService = new NavigationService();
+        }
         #endregion
 
         #region Commmands
@@ -30,9 +44,9 @@ namespace ECommerceMobile.Pages.ViewModel
         }
 
 
-            private void Navigate()
+            private async void Navigate()
             {
-                throw new NotImplementedException();
+                await navigationService.Navigate(PageName);
             }
 
 

@@ -9,16 +9,25 @@ namespace ECommerceMobile
 {
     public partial class App : Application
     {
+        #region Properties
         public static NavigationPage Navigator { get; set; }
+
+        public static MasterPage Master { get; set; }
+
+        #endregion
+        #region Constructor
         public App()
         {
             InitializeComponent();
 
             MainPage = new MasterPage();
+            //Master = new MasterPage();
         }
+        #endregion
 
 
 
+        #region Methods
         protected override void OnStart()
         {
             // Handle when your app starts
@@ -33,5 +42,6 @@ namespace ECommerceMobile
         {
             // Handle when your app resumes
         }
+        #endregion
     }
 }
