@@ -33,10 +33,10 @@ namespace ECommerceMobile.Services
                 case "SetupPage":
                     await App.Navigator.PushAsync(new SetupPage());
                     break;
-                case "SyncPag":
+                case "SyncPage":
                     await App.Navigator.PushAsync(new  SyncPage());
                     break;
-                case "SyncPage":
+                case "UsersPage":
                     await App.Navigator.PushAsync(new UsersPage());
                     break;
 
